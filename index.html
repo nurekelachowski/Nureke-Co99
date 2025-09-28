@@ -1,0 +1,254 @@
+# Nureke-Co99
+Nurekelachowski site
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Нурхан — IT специалист</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --text: #e0e0e0;
+      --muted: #888;
+      --neon-blue: #00f7ff;
+      --neon-purple: #9b59b6;
+      --neon-green: #39ff14;
+      --card: #0d0d0d;
+    }
+
+    body {
+      margin:0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1,h2,h3 { margin:0; }
+    h1 { font-size: 28px; color: var(--neon-purple); text-shadow:0 0 10px var(--neon-purple); }
+    h2 { font-size: 22px; margin-bottom:12px; color: var(--neon-blue); text-shadow:0 0 8px var(--neon-blue); }
+    h3 { font-size: 18px; color: var(--neon-purple); }
+
+    .container { width: 92%; max-width: 800px; margin: 0 auto; padding: 20px 0; }
+    header { text-align:center; padding:20px 0; }
+
+    .lang-switch { display:flex; justify-content:center; gap:10px; margin:12px 0; flex-wrap: wrap; }
+    .btn {
+      background: var(--neon-blue);
+      color:#111;
+      padding:8px 14px;
+      border-radius:8px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      text-shadow:0 0 6px var(--neon-blue);
+      box-shadow:0 0 10px var(--neon-blue);
+      transition:0.3s;
+    }
+    .btn:hover { background:#00d1ff; box-shadow:0 0 18px var(--neon-blue); }
+
+    /* услуги */
+    .services-list { display:flex; flex-direction:column; gap:16px; }
+    .service-card {
+      display:flex; justify-content:space-between; align-items:center;
+      background: var(--card);
+      border:1px solid var(--neon-purple);
+      border-radius:14px;
+      padding:16px 20px;
+      box-shadow:0 0 10px rgba(155,89,182,0.4);
+      transition:0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow:0 0 20px rgba(155,89,182,0.8);
+    }
+    .price { font-weight:700; font-size:18px; color: var(--neon-blue); white-space:nowrap; }
+
+    /* скидка */
+    .price.discount {
+      font-size:20px;
+      font-weight:800;
+      color: var(--neon-green);
+      animation: glow 1.5s infinite alternate;
+    }
+    .price.discount .old {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size:14px;
+      margin-left:6px;
+    }
+    @keyframes glow {
+      0% { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+      100% { color: #7fff7f; text-shadow: 0 0 15px var(--neon-green); }
+    }
+
+    /* отзывы */
+    .reviews { display:flex; flex-direction:column; gap:14px; }
+    .review {
+      background: var(--card);
+      border-left:4px solid var(--neon-blue);
+      border-radius:10px;
+      padding:14px 16px;
+      font-size:15px;
+      box-shadow:0 0 10px rgba(0,247,255,0.3);
+    }
+
+    /* FAQ */
+    .faq { margin-top:40px; }
+    .faq-item {
+      background: var(--card);
+      margin-bottom:10px;
+      border:1px solid var(--neon-blue);
+      border-radius:10px;
+      overflow:hidden;
+      transition:0.3s;
+    }
+    .faq-question {
+      padding:12px 16px;
+      cursor:pointer;
+      font-weight:600;
+      color: var(--neon-blue);
+    }
+    .faq-answer {
+      padding:0 16px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.4s ease;
+      color: var(--muted);
+    }
+    .faq-item.active .faq-answer { max-height:200px; padding:12px 16px; }
+
+    /* контакты */
+    .contacts { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; justify-content:center; }
+    .chip {
+      display:flex; align-items:center; gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:600;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    .chip:hover { transform:scale(1.05); }
+
+    .whatsapp { background:#111; color:#25d366; box-shadow:0 0 12px #25d366; }
+    .telegram { background:#111; color:#0088cc; box-shadow:0 0 12px #0088cc; }
+    .email { background:#111; color:#ffae42; box-shadow:0 0 12px #ffae42; }
+    .phone { background:#111; color:#00f7ff; box-shadow:0 0 12px #00f7ff; }
+
+    /* заказать сейчас */
+    .order-btn {
+      display:block;
+      margin:30px auto;
+      padding:12px 20px;
+      font-size:18px;
+      font-weight:700;
+      background: var(--neon-green);
+      color:#111;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      animation: glowBtn 1.5s infinite alternate;
+      text-decoration:none;
+      text-align:center;
+      width:max-content;
+      box-shadow:0 0 15px var(--neon-green);
+    }
+    @keyframes glowBtn {
+      0% { box-shadow:0 0 10px var(--neon-green); }
+      100% { box-shadow:0 0 25px var(--neon-green); }
+    }
+
+    footer { text-align:center; padding:20px 0; font-size:14px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Нурхан — IT специалист</h1>
+      <p>Создание сайтов, настройка устройств, техподдержка</p>
+      <div class="lang-switch">
+        <button class="btn">RU</button>
+        <button class="btn">KZ</button>
+        <button class="btn">EN</button>
+        <button class="btn">🌗 Тема</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- услуги -->
+    <section id="services">
+      <h2>💼 Услуги</h2>
+      <div class="services-list">
+        <div class="service-card">
+          <div>
+            <h3>Создание сайта</h3>
+            <p>Адаптивный, современный.</p>
+          </div>
+          <div class="price discount">2000 ₸ <span class="old">2500 ₸</span></div>
+        </div>
+        <div class="service-card"><div><h3>Настройка iPhone / iPad</h3><p>Установка, оптимизация.</p></div><div class="price">1800 ₸</div></div>
+        <div class="service-card"><div><h3>Настройка Android</h3><p>Чистка, ускорение, приложения.</p></div><div class="price">1600 ₸</div></div>
+        <div class="service-card"><div><h3>Установка приложений</h3><p>VPN, мессенджеры, соцсети.</p></div><div class="price">1400 ₸</div></div>
+        <div class="service-card"><div><h3>Оптимизация телефона</h3><p>Удаление мусора, безопасность.</p></div><div class="price">1500 ₸</div></div>
+        <div class="service-card"><div><h3>Консультация</h3><p>Помощь в выборе устройств.</p></div><div class="price">1000 ₸</div></div>
+      </div>
+    </section>
+
+    <!-- заказать -->
+    <a href="https://wa.me/77750576263" class="order-btn">📥 Заказать сейчас</a>
+
+    <!-- отзывы -->
+    <section id="reviews">
+      <h2>⭐ Отзывы клиентов</h2>
+      <div class="reviews">
+        <div class="review"><p>★★★★★ — <strong>Айдар</strong><br>Очень помог с телефоном, всё работает идеально!</p></div>
+        <div class="review"><p>★★★★★ — <strong>Марина</strong><br>Сайт сделал быстро и красиво, довольна на 100%.</p></div>
+        <div class="review"><p>★★★★★ — <strong>Ержан</strong><br>Поддержка на уровне, объяснил всё доступно!</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2>❓ Частые вопросы</h2>
+      <div class="faq-item">
+        <div class="faq-question">Сколько занимает создание сайта?</div>
+        <div class="faq-answer">Обычно 1–2 дня.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Можно ли оплатить частями?</div>
+        <div class="faq-answer">Нет, оплата сразу.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Есть ли гарантия?</div>
+        <div class="faq-answer">Да, помогаю даже после выполнения заказа.</div>
+      </div>
+    </section>
+
+    <!-- контакты -->
+    <section id="contacts" style="margin-top:40px;">
+      <h2>📱 Контакты</h2>
+      <div class="contacts">
+        <a href="tel:+77750576263" class="chip phone">📞 +7 775 057 62 63</a>
+        <a href="https://wa.me/77750576263" class="chip whatsapp">💬 WhatsApp</a>
+        <a href="https://t.me/nurekelachowski" class="chip telegram">📲 Telegram</a>
+        <a href="mailto:nurkhangabdolla7@icloud.com" class="chip email">📧 Email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Нурхан. Все права защищены.
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q=>{
+      q.addEventListener('click',()=>{
+        q.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
